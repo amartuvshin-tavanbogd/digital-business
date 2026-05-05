@@ -1,0 +1,2749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Business Department | Tavan Bogd Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-900: #0a1628;
+    --navy-800: #102a43;
+    --navy-700: #1e3a5f;
+    --blue-600: #1e6091;
+    --blue-500: #2c7da0;
+    --blue-400: #468faf;
+    --blue-300: #61a5c2;
+    --accent: #00d4ff;
+    --gold: #d4a017;
+    --bg: #f5f7fa;
+    --bg-card: #ffffff;
+    --text: #0a1628;
+    --text-muted: #5a6c7d;
+    --border: #e1e8ed;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .deck {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  /* Navigation */
+  .nav-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    gap: 8px;
+    background: rgba(10, 22, 40, 0.95);
+    padding: 8px 12px;
+    border-radius: 100px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  }
+
+  .nav-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { background: var(--accent); color: var(--navy-900); }
+  .nav-btn.active { background: var(--accent); color: var(--navy-900); }
+
+  .slide-counter {
+    color: white;
+    font-size: 12px;
+    padding: 6px 12px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Slide Base */
+  .slide {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 60px 70px;
+    margin-bottom: 40px;
+    min-height: 680px;
+    box-shadow: 0 4px 30px rgba(10, 22, 40, 0.08);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slide-number {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .slide-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--blue-500);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .slide-tag::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--blue-500);
+  }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--navy-900);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--navy-900);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy-900);
+    margin-bottom: 12px;
+  }
+
+  p { color: var(--text-muted); font-size: 15px; }
+  .lead { font-size: 18px; color: var(--text); line-height: 1.6; }
+
+  /* SLIDE 1: Cover */
+  .slide-cover {
+    background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 50%, var(--blue-600) 100%);
+    color: white;
+    justify-content: space-between;
+  }
+  .slide-cover::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .slide-cover::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(70,143,175,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
+  .brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cover-content h1 {
+    color: white;
+    font-size: 68px;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+  }
+  .cover-content h1 strong {
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent), #61a5c2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cover-subtitle {
+    color: rgba(255,255,255,0.7);
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 16px;
+    max-width: 600px;
+  }
+  .cover-meta {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .meta-item {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+  }
+  .meta-item strong {
+    display: block;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  /* SLIDE 2: Mission/Overview */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .stat-card {
+    background: linear-gradient(135deg, var(--navy-900), var(--navy-800));
+    color: white;
+    padding: 32px 24px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--accent);
+  }
+  .stat-num {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .stat-label {
+    color: rgba(255,255,255,0.8);
+    font-size: 13px;
+    margin-top: 12px;
+    font-weight: 500;
+  }
+
+  .mission-box {
+    background: linear-gradient(135deg, #f0f7fc, #e1eef7);
+    padding: 32px 40px;
+    border-radius: 12px;
+    border-left: 4px solid var(--blue-500);
+    margin-top: 30px;
+  }
+  .mission-box .lead {
+    font-size: 20px;
+    color: var(--navy-800);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* SLIDE 3: Org Structure */
+  .org-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+  .org-head {
+    background: linear-gradient(135deg, var(--navy-900), var(--blue-600));
+    color: white;
+    padding: 24px 48px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 0;
+    box-shadow: 0 8px 24px rgba(30, 96, 145, 0.25);
+    min-width: 320px;
+  }
+  .org-head .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .org-head .name {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .org-head .title {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+  }
+  .org-line {
+    width: 2px;
+    height: 40px;
+    background: var(--blue-400);
+    margin: 0;
+  }
+  .org-branches {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+    position: relative;
+  }
+  .org-branches::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 16.66%;
+    right: 16.66%;
+    height: 2px;
+    background: var(--blue-400);
+  }
+  .org-team {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .org-team::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background: var(--blue-400);
+  }
+  .org-team:hover {
+    border-color: var(--blue-500);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(30, 96, 145, 0.12);
+  }
+  .team-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
+    border-radius: 12px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .org-team .team-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy-900);
+    margin-bottom: 6px;
+  }
+  .org-team .team-lead {
+    font-size: 14px;
+    color: var(--blue-600);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .org-team .team-size {
+    display: inline-block;
+    background: #f0f7fc;
+    color: var(--blue-600);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .org-team .team-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 14px;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  /* Multi-role section under org chart */
+  .multi-role {
+    margin-top: 36px;
+    padding: 26px 30px;
+    background: linear-gradient(135deg, #f0f7fc, #e8f1f8);
+    border-radius: 12px;
+    border-left: 3px solid var(--gold);
+  }
+  .multi-role-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .multi-role-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--blue-600);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .multi-role-note {
+    font-size: 13px;
+    color: var(--navy-800);
+    font-weight: 500;
+  }
+  .pm-functions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .pm-function {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.2s;
+  }
+  .pm-function:hover {
+    border-color: var(--blue-400);
+    box-shadow: 0 4px 14px rgba(30, 96, 145, 0.08);
+  }
+  .pm-fn-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .pm-function:nth-child(2) .pm-fn-icon {
+    background: linear-gradient(135deg, var(--gold), #b8860b);
+  }
+  .pm-function:nth-child(3) .pm-fn-icon {
+    background: linear-gradient(135deg, var(--blue-400), var(--accent));
+    color: var(--navy-900);
+  }
+  .pm-fn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .pm-fn-text strong {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy-900);
+  }
+  .pm-fn-text span {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* SLIDE 4-6: Team Details */
+  .team-detail {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 50px;
+    margin-top: 30px;
+    flex: 1;
+  }
+  .team-info {
+    background: linear-gradient(135deg, var(--navy-900), var(--navy-800));
+    color: white;
+    padding: 36px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .team-info::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 70%);
+  }
+  .team-info-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .team-info-name {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .team-info-lead {
+    color: rgba(255,255,255,0.8);
+    font-size: 15px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .team-info-lead strong {
+    color: white;
+    font-weight: 600;
+    display: block;
+    margin-top: 4px;
+    font-size: 18px;
+  }
+  .team-info-stat {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 14px;
+  }
+  .team-info-stat:last-child { border: none; }
+  .team-info-stat span:first-child { color: rgba(255,255,255,0.7); }
+  .team-info-stat span:last-child { color: white; font-weight: 600; }
+
+  .responsibility-list {
+    list-style: none;
+  }
+  .responsibility-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .responsibility-item:last-child { border: none; }
+  .resp-num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .resp-content h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy-900);
+    margin-bottom: 4px;
+  }
+  .resp-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* SLIDE 7: Products Grid */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 30px;
+  }
+  .product-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--blue-500), var(--accent));
+  }
+  .product-card:hover {
+    border-color: var(--blue-500);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(30, 96, 145, 0.1);
+  }
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .product-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--navy-900);
+    letter-spacing: -0.01em;
+  }
+  .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+  .badge.live { background: #d4f4dd; color: #1a7f3a; }
+  .badge.dev { background: #fff4d6; color: #8a6914; }
+  .badge.plan { background: #e1eef7; color: var(--blue-600); }
+  .product-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* SLIDE 8: ERP Implementation Table */
+  .erp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    font-size: 13px;
+  }
+  .erp-table thead tr {
+    background: var(--navy-900);
+    color: white;
+  }
+  .erp-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .erp-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .erp-table tr:hover { background: #f9fbfd; }
+  .erp-table tr:last-child td { border: none; }
+
+  /* Roadmap */
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 30px;
+    flex: 1;
+  }
+  .quarter {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .quarter::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--blue-500), var(--accent));
+    border-radius: 12px 12px 0 0;
+  }
+  .quarter-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--blue-500);
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+  }
+  .quarter h4 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--navy-900);
+    margin-bottom: 16px;
+  }
+  .quarter ul {
+    list-style: none;
+    flex: 1;
+  }
+  .quarter li {
+    font-size: 13px;
+    color: var(--text);
+    padding: 8px 0;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.4;
+    border-bottom: 1px dashed var(--border);
+  }
+  .quarter li:last-child { border: none; }
+  .quarter li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--blue-500);
+    font-weight: 700;
+  }
+
+  /* Final slide */
+  .slide-final {
+    background: linear-gradient(135deg, var(--navy-900), var(--navy-800), var(--blue-600));
+    color: white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+  .slide-final::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(0,212,255,0.1), transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(70,143,175,0.15), transparent 50%);
+  }
+  .final-content { position: relative; z-index: 2; }
+  .final-content h1 {
+    color: white;
+    font-size: 56px;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+  .final-content h1 strong {
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent), #61a5c2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .final-content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 17px;
+    max-width: 500px;
+    margin: 0 auto 40px;
+  }
+  .signature {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+  }
+
+  /* Print */
+  @media print {
+    body { background: white; }
+    .nav-controls { display: none; }
+    .slide { page-break-after: always; box-shadow: none; margin-bottom: 0; }
+  }
+
+  /* Executive Dashboard Slide */
+  .slide-dashboard {
+    padding: 36px 40px;
+    background: #f5f7fa;
+  }
+  .dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--navy-900);
+  }
+  .dash-header-left {
+    flex: 1;
+  }
+  .dash-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #d44a3a;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .dash-tag::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: #d44a3a;
+  }
+  .dash-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--navy-900);
+    line-height: 1.1;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .dash-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .dash-header-right {
+    text-align: right;
+  }
+  .dash-date-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .dash-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy-900);
+    margin-bottom: 8px;
+  }
+  .conf-badge {
+    display: inline-block;
+    background: var(--navy-900);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+
+  /* Top stats bar */
+  .dash-stats {
+    background: var(--navy-900);
+    color: white;
+    border-radius: 6px;
+    padding: 14px 18px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .dash-stat {
+    border-right: 1px solid rgba(255,255,255,0.12);
+    padding-right: 12px;
+  }
+  .dash-stat:last-child { border-right: none; }
+  .dash-stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .dash-stat-value {
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .dash-stat-sub {
+    font-size: 9px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 500;
+  }
+  .dash-stat-value.accent { color: #ff6b4a; }
+  .dash-stat-value.gold { color: #ffc107; }
+
+  /* Platform cards grid */
+  .dash-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .dash-card {
+    background: white;
+    border-radius: 6px;
+    padding: 12px 14px;
+    border: 1px solid #e1e8ed;
+    position: relative;
+    font-size: 11px;
+  }
+  .dash-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+  }
+  .dash-card-name {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--navy-900);
+    letter-spacing: -0.01em;
+  }
+  .dash-tag-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .dash-tag-pill.external {
+    background: #fff0eb;
+    color: #d44a3a;
+  }
+  .dash-tag-pill.internal {
+    background: #e8f1f8;
+    color: var(--blue-600);
+  }
+  .dash-tag-pill::before {
+    content: '●';
+    font-size: 7px;
+  }
+  .dash-card-meta {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+  .dash-card-desc {
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .dash-section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    color: var(--blue-600);
+    text-transform: uppercase;
+    font-weight: 700;
+    border-top: 1px solid #e1e8ed;
+    padding-top: 6px;
+    margin-bottom: 4px;
+  }
+  .dash-objectives {
+    list-style: none;
+    margin-bottom: 8px;
+  }
+  .dash-objectives li {
+    font-size: 10.5px;
+    color: var(--text);
+    padding: 1px 0 1px 10px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .dash-objectives li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--blue-500);
+    font-weight: 700;
+  }
+  .dash-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 5px;
+    margin-top: 4px;
+    border-top: 1px solid #e1e8ed;
+  }
+  .dash-row-item {
+    flex: 1;
+  }
+  .dash-row-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .dash-row-value {
+    font-size: 11px;
+    color: var(--navy-900);
+    font-weight: 600;
+  }
+  .dash-engineers {
+    margin-top: 6px;
+  }
+  .dash-engineer-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 3px;
+  }
+  .eng-pill {
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 100px;
+    background: #f5f7fa;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .eng-pill.warn { background: #fff4d6; color: #8a6914; }
+  .eng-pill.busy { background: #ffe5dc; color: #b8431f; }
+
+  /* Progress bar */
+  .dash-progress {
+    margin-top: 6px;
+  }
+  .dash-progress-track {
+    background: #e1e8ed;
+    height: 4px;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .dash-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue-500), var(--accent));
+    border-radius: 2px;
+  }
+  .dash-progress-bar.green {
+    background: linear-gradient(90deg, #1a7f3a, #2dba5e);
+  }
+  .dash-progress-bar.red {
+    background: linear-gradient(90deg, #d44a3a, #ff6b4a);
+  }
+  .dash-progress-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .dash-progress-row strong { color: var(--navy-900); }
+
+  /* Footer composition */
+  .dash-footer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 16px;
+    background: white;
+    border-radius: 6px;
+    padding: 14px 18px;
+    border: 1px solid #e1e8ed;
+  }
+  .composition-title, .timeline-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .comp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 14px;
+    font-size: 11px;
+  }
+  .comp-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+  }
+  .comp-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .comp-dot.internal { background: var(--navy-900); }
+  .comp-dot.external { background: #d44a3a; }
+  .comp-dot.b2c { background: var(--navy-900); }
+  .comp-dot.b2b { background: #d44a3a; }
+  .comp-dot.market { background: var(--navy-900); }
+  .comp-dot.fintech { background: #d44a3a; }
+  .comp-count {
+    margin-left: auto;
+    font-weight: 700;
+    color: var(--navy-900);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .timeline-list {
+    font-size: 10.5px;
+    color: var(--text);
+    line-height: 1.55;
+    column-count: 2;
+    column-gap: 18px;
+  }
+  .timeline-list span {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  /* Challenges section */
+  .challenges-block {
+    margin-top: 28px;
+    background: linear-gradient(135deg, #fff5f0, #fff0eb);
+    border-radius: 12px;
+    padding: 22px 26px;
+    border-left: 3px solid #d44a3a;
+  }
+  .challenges-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .challenges-icon {
+    width: 28px;
+    height: 28px;
+    background: #d44a3a;
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .challenges-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #d44a3a;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .challenges-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .challenge-card {
+    background: white;
+    border-radius: 8px;
+    padding: 14px 16px;
+    border: 1px solid #f4d0c4;
+  }
+  .challenge-card h5 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy-900);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .challenge-card h5::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #d44a3a;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .challenge-card p {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* Animation */
+  .slide { animation: fadeUp 0.6s ease both; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-controls">
+  <button class="nav-btn" onclick="window.print()">Print / PDF</button>
+  <span class="slide-counter">10 SLIDES</span>
+</div>
+
+<div class="deck">
+
+  <!-- SLIDE 1: COVER -->
+  <section class="slide slide-cover">
+    <div class="cover-top">
+      <div class="brand">Tavan Bogd Solutions LLC</div>
+      <div class="brand">2026</div>
+    </div>
+
+    <div class="cover-content">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 0.3em; margin-bottom: 24px;">
+        ── DEPARTMENT INTRODUCTION
+      </div>
+      <h1>
+        Digital Business<br>
+        <strong>Department</strong>
+      </h1>
+    </div>
+
+    <div class="cover-meta">
+      <div class="meta-item">
+        <strong>20 People</strong>
+        Across 3 specialized teams
+      </div>
+      <div class="meta-item">
+        <strong>14+ Products</strong>
+        Live, in development & planned
+      </div>
+      <div class="meta-item">
+        <strong>Briefing for</strong>
+        New Group CTO
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: OVERVIEW & MISSION -->
+  <section class="slide">
+    <span class="slide-number">02 / 10</span>
+    <div class="slide-tag">At a Glance</div>
+    <h2>Department Overview</h2>
+
+    <div class="mission-box">
+      <p class="lead">
+        We design, build, and operate the digital platforms that power Tavan Bogd Group — delivering enterprise systems, customer-facing products, and AI-driven automation across 15+ subsidiary companies.
+      </p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">20</div>
+        <div class="stat-label">Total team members</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Specialized teams with leads</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">7</div>
+        <div class="stat-label">Digital platforms in portfolio</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">18</div>
+        <div class="stat-label">Subsidiary ERP rollouts</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; padding: 24px; background: #f9fbfd; border-radius: 12px; border-left: 3px solid var(--gold);">
+      <h3 style="font-size: 14px; color: var(--blue-600); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;">Strategic Focus 2026</h3>
+      <p style="color: var(--text); font-size: 15px;">
+        Group-wide Odoo ERP v19 deployment · Platform expansion (TechOn, LinkOn, TBG Life, PayOn v3) · AI-powered process automation across the enterprise lifecycle.
+      </p>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: ORG STRUCTURE -->
+  <section class="slide">
+    <span class="slide-number">03 / 10</span>
+    <div class="slide-tag">Organization</div>
+    <h2>Team Structure</h2>
+
+    <div class="org-chart">
+      <div class="org-head">
+        <div class="role">Department Head</div>
+        <div class="name">Digital Business Department</div>
+        <div class="title">20 members · 3 specialized teams</div>
+      </div>
+      <div class="org-line"></div>
+
+      <div class="org-branches">
+        <div class="org-team">
+          <div class="team-icon">E</div>
+          <div class="team-name">Enterprise / ERP</div>
+          <div class="team-lead">Lead: M. Uyanga</div>
+          <div class="team-size">8 members</div>
+          <div class="team-desc">
+            Group-wide Odoo ERP v19 deployment, business requirement gathering, and packaged solution delivery.
+          </div>
+        </div>
+
+        <div class="org-team">
+          <div class="team-icon">P</div>
+          <div class="team-name">Platform</div>
+          <div class="team-lead">Lead: E. Ariuntsas</div>
+          <div class="team-size">5 members</div>
+          <div class="team-desc">
+            Builds and evolves Tavan Bogd's customer-facing and internal digital platforms end-to-end.
+          </div>
+        </div>
+
+        <div class="org-team">
+          <div class="team-icon">A</div>
+          <div class="team-name">Automation & AI</div>
+          <div class="team-lead">Lead: U. Tsend-Ayush</div>
+          <div class="team-size">6 members</div>
+          <div class="team-desc">
+            Process automation, AI-powered ToBe design, and lifecycle integration via APIs and autonomous agents.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="multi-role">
+      <div class="multi-role-header">
+        <span class="multi-role-title">▸ Team members — Product Managers</span>
+        <span class="multi-role-note">Each Product Manager performs three functions across the product lifecycle</span>
+      </div>
+      <div class="pm-functions">
+        <div class="pm-function">
+          <div class="pm-fn-icon">BA</div>
+          <div class="pm-fn-text">
+            <strong>Business Analysis</strong>
+            <span>Stakeholder discovery, process mapping, gap analysis</span>
+          </div>
+        </div>
+        <div class="pm-function">
+          <div class="pm-fn-icon">PRD</div>
+          <div class="pm-fn-text">
+            <strong>BRD / PRD Authoring</strong>
+            <span>Business & product requirement documentation</span>
+          </div>
+        </div>
+        <div class="pm-function">
+          <div class="pm-fn-icon">SM</div>
+          <div class="pm-fn-text">
+            <strong>Scrum Facilitation</strong>
+            <span>Sprint planning, ceremonies, delivery coordination</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: ENTERPRISE / ERP TEAM -->
+  <section class="slide">
+    <span class="slide-number">04 / 10</span>
+    <div class="slide-tag">Team 01 — Enterprise</div>
+    <h2>ERP Team</h2>
+
+    <div class="team-detail">
+      <div class="team-info">
+        <div class="team-info-tag">Team Profile</div>
+        <div class="team-info-name">Enterprise / ERP</div>
+        <div class="team-info-lead">
+          PM Lead
+          <strong>M. Uyanga</strong>
+        </div>
+        <div class="team-info-stat"><span>Team size</span><span>8 members</span></div>
+        <div class="team-info-stat"><span>Primary platform</span><span>Odoo ERP v19</span></div>
+        <div class="team-info-stat"><span>Active rollouts</span><span>18 subsidiaries</span></div>
+        <div class="team-info-stat"><span>Methodology</span><span>Phased deployment</span></div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom: 20px;">Core Responsibilities</h3>
+        <ul class="responsibility-list">
+          <li class="responsibility-item">
+            <div class="resp-num">01</div>
+            <div class="resp-content">
+              <h4>Group-wide Odoo ERP v19 Deployment</h4>
+              <p>Roll out standardized ERP modules across all Tavan Bogd subsidiary companies. Deliverable: signed implementation contracts.</p>
+            </div>
+          </li>
+          <li class="responsibility-item">
+            <div class="resp-num">02</div>
+            <div class="resp-content">
+              <h4>Automation Demand Management</h4>
+              <p>Collect, prioritize, and document automation requests from across the Group. Deliverable: Business Requirement Documents (BRDs).</p>
+            </div>
+          </li>
+          <li class="responsibility-item">
+            <div class="resp-num">03</div>
+            <div class="resp-content">
+              <h4>Packaged Solution Sales</h4>
+              <p>Recommend and deliver ready-to-deploy enterprise solutions to internal customers. Deliverable: completed sales and deployments.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="challenges-block">
+      <div class="challenges-header">
+        <div class="challenges-icon">!</div>
+        <div class="challenges-title">Current Challenges</div>
+      </div>
+      <div class="challenges-grid">
+        <div class="challenge-card">
+          <h5>Standard Modules vs. Diverse Business Models</h5>
+          <p>Rolling out a single multi-company ERP setup across 18 subsidiaries with very different industries (retail, finance, F&B, construction, hospitality, logistics) makes it difficult to fit all of them into the standard module set. Each company also raises a high volume of custom requirements, creating constant scope and configuration tension.</p>
+        </div>
+        <div class="challenge-card">
+          <h5>No Standardized Demand Prioritization</h5>
+          <p>Development requests flow in continuously from across the Group, but there is no consistent framework to evaluate, score, and prioritize them. This results in ad-hoc decisions and difficulty aligning delivery capacity with business value.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: PLATFORM TEAM -->
+  <section class="slide">
+    <span class="slide-number">05 / 10</span>
+    <div class="slide-tag">Team 02 — Product</div>
+    <h2>Platform Team</h2>
+
+    <div class="team-detail">
+      <div class="team-info">
+        <div class="team-info-tag">Team Profile</div>
+        <div class="team-info-name">Platform</div>
+        <div class="team-info-lead">
+          PM Lead
+          <strong>E. Ariuntsas</strong>
+        </div>
+        <div class="team-info-stat"><span>Team size</span><span>5 members</span></div>
+        <div class="team-info-stat"><span>Active platforms</span><span>7</span></div>
+        <div class="team-info-stat"><span>Methodology</span><span>Agile / Scrum</span></div>
+        <div class="team-info-stat"><span>Stack</span><span>Web · Mobile · API</span></div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom: 20px;">Core Responsibilities</h3>
+        <ul class="responsibility-list">
+          <li class="responsibility-item">
+            <div class="resp-num">01</div>
+            <div class="resp-content">
+              <h4>New Product Definition</h4>
+              <p>Translate business needs into new product concepts; define scope and roadmap. Deliverables: PRD, BRD.</p>
+            </div>
+          </li>
+          <li class="responsibility-item">
+            <div class="resp-num">02</div>
+            <div class="resp-content">
+              <h4>Platform Development & Integration</h4>
+              <p>Drive ongoing development with engineering teams; ensure cross-system integration and quality control. Deliverable: Task register.</p>
+            </div>
+          </li>
+          <li class="responsibility-item">
+            <div class="resp-num">03</div>
+            <div class="resp-content">
+              <h4>Operations Handover</h4>
+              <p>Support post-launch stability; produce documentation; transition platforms to the Infrastructure team. Deliverable: Deployment Checklist.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="challenges-block">
+      <div class="challenges-header">
+        <div class="challenges-icon">!</div>
+        <div class="challenges-title">Current Challenges</div>
+      </div>
+      <div class="challenges-grid">
+        <div class="challenge-card">
+          <h5>Resource Gap on Internally-Owned Platforms</h5>
+          <p>For platforms not yet started, our company is the product owner itself, but there are not enough full-time resources to drive execution. This slows down kickoff and puts delivery timelines at risk.</p>
+        </div>
+        <div class="challenge-card">
+          <h5>Undefined Business Requirements</h5>
+          <p>For LinkOn, HomeOn, and PayOn v3, the business requirements — product type, target users, and strategic objectives — are not yet fully defined. Without clear scope, the team cannot move into structured design and development.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: AUTOMATION TEAM -->
+  <section class="slide">
+    <span class="slide-number">06 / 10</span>
+    <div class="slide-tag">Team 03 — Automation & AI</div>
+    <h2>Automation Team</h2>
+
+    <div class="team-detail">
+      <div class="team-info">
+        <div class="team-info-tag">Team Profile</div>
+        <div class="team-info-name">Automation & AI</div>
+        <div class="team-info-lead">
+          PM Lead
+          <strong>U. Tsend-Ayush</strong>
+        </div>
+        <div class="team-info-stat"><span>Team size</span><span>6 members</span></div>
+        <div class="team-info-stat"><span>Standard</span><span>APQC framework</span></div>
+        <div class="team-info-stat"><span>Approach</span><span>3 automation layers</span></div>
+        <div class="team-info-stat"><span>Active workstreams</span><span>11</span></div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom: 20px;">Core Responsibilities</h3>
+        <ul class="responsibility-list">
+          <li class="responsibility-item">
+            <div class="resp-num">01</div>
+            <div class="resp-content">
+              <h4>ToBe Process Design (APQC-aligned)</h4>
+              <p>Define and validate target-state lifecycle processes against international standards. Deliverable: Process Library.</p>
+            </div>
+          </li>
+          <li class="responsibility-item">
+            <div class="resp-num">02</div>
+            <div class="resp-content">
+              <h4>AI-Powered ToBe & Use Case Mapping</h4>
+              <p>Identify automation and AI use cases across the lifecycle; produce AI-powered ToBe blueprints. Deliverable: Process Library.</p>
+            </div>
+          </li>
+          <li class="responsibility-item">
+            <div class="resp-num">03</div>
+            <div class="resp-content">
+              <h4>Master Data & Gap Analysis</h4>
+              <p>Define lifecycle datasets and conduct gap analysis to inform automation priorities. Deliverable: Master Data inventory.</p>
+            </div>
+          </li>
+          <li class="responsibility-item">
+            <div class="resp-num">04</div>
+            <div class="resp-content">
+              <h4>3-Layer Automation Delivery</h4>
+              <p>Execute via three integrated approaches: <strong>Platform automation</strong>, <strong>ERP automation</strong>, and <strong>autonomous agents connected via API</strong>.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="challenges-block">
+      <div class="challenges-header">
+        <div class="challenges-icon">!</div>
+        <div class="challenges-title">Current Challenges</div>
+      </div>
+      <div class="challenges-grid">
+        <div class="challenge-card">
+          <h5>No Defined Automation Strategy</h5>
+          <p>Without a clear, group-wide automation strategy, use cases are not consistently identified, prioritized, or matched to the right solution. This leads to scattered initiatives instead of a cohesive automation portfolio with measurable business outcomes.</p>
+        </div>
+        <div class="challenge-card">
+          <h5>No Unified Platform & Architecture</h5>
+          <p>Automation efforts are spread across disconnected tools and patterns with no shared platform or reference architecture. This creates duplicated work, integration overhead, and limits our ability to scale automation reliably across the Group.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: PLATFORM TEAM EXECUTIVE REPORT -->
+  <section class="slide slide-dashboard">
+    <span class="slide-number" style="position: absolute; top: 20px; right: 30px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted);">07 / 10</span>
+
+    <div class="dash-header">
+      <div class="dash-header-left">
+        <div class="dash-tag">Platform Team · Executive Report</div>
+        <div class="dash-title">Development goals, objectives & responsibility map</div>
+        <div class="dash-subtitle">8 platforms · 2025 Q4 — 2026 Q4 · Internal & external product portfolio</div>
+      </div>
+      <div class="dash-header-right">
+        <div class="dash-date-label">Report Date</div>
+        <div class="dash-date">2026.04.28</div>
+        <span class="conf-badge">CONFIDENTIAL</span>
+      </div>
+    </div>
+
+    <!-- Top stats -->
+    <div class="dash-stats">
+      <div class="dash-stat">
+        <div class="dash-stat-label">Total Platforms</div>
+        <div class="dash-stat-value">8</div>
+        <div class="dash-stat-sub">3 internal · 5 external</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-label">Product Leads</div>
+        <div class="dash-stat-value">8</div>
+        <div class="dash-stat-sub">Assigned 7 · TBD 1 · PM staffing 88%</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-label">Engineering Capacity</div>
+        <div class="dash-stat-value">24</div>
+        <div class="dash-stat-sub">Gross headcount · 19 unique on 2+ projects</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-label">Active (Live) Development</div>
+        <div class="dash-stat-value accent">6 / 8</div>
+        <div class="dash-stat-sub">Juulchin Phase 1 delivered · TBG Life 85%</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-label">Next Milestone</div>
+        <div class="dash-stat-value">2026 Q1</div>
+        <div class="dash-stat-sub">TBG Life MVP · TechOn Beta</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-label">Portfolio Target</div>
+        <div class="dash-stat-value">2026 Q4</div>
+        <div class="dash-stat-sub">Full portfolio rollout</div>
+      </div>
+    </div>
+
+    <!-- Platform cards 3x3 grid -->
+    <div class="dash-grid">
+
+      <!-- Card 1: Juulchin.com -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">Juulchin.com</div>
+          <span class="dash-tag-pill external">External · B2C</span>
+        </div>
+        <div class="dash-card-meta">Web, app — Juulchin</div>
+        <div class="dash-card-desc">Single point of booking for tours, hotels, restaurants and transport for travelers.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Tours, hotels, restaurants & transport in one place</li>
+          <li>Online booking for domestic & inbound tourists</li>
+          <li>Mobile-first solution, B2C platform</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">G. Anu</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">2026 Q2 → Q4</div>
+          </div>
+        </div>
+        <div class="dash-engineers">
+          <div class="dash-row-label">Engineers · 4</div>
+          <div class="dash-engineer-list">
+            <span class="eng-pill">B. Lkhagvador</span>
+            <span class="eng-pill">B. Gantulga</span>
+            <span class="eng-pill">B. Khatansaikhan</span>
+            <span class="eng-pill warn">S. Nyambayar</span>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Phase 1 / 3</span><strong>delivered</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar green" style="width: 100%;"></div></div>
+        </div>
+        <div class="dash-row" style="margin-top: 6px;">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Total revenue</div>
+            <div class="dash-row-value">52 M ₮</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: TBG Life -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">TBG Life</div>
+          <span class="dash-tag-pill internal">Internal · B2C</span>
+        </div>
+        <div class="dash-card-meta">TBGlife app, web</div>
+        <div class="dash-card-desc">Roll out a unified HR platform combining attendance, requests, AI chatbot and coupon system.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Unified attendance, request & transfer system</li>
+          <li>AI chatbot answering employee queries</li>
+          <li>Coupon, expense & HR process management</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">A. Erdembileg</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">2025.10 → 2026.05</div>
+          </div>
+        </div>
+        <div class="dash-engineers">
+          <div class="dash-row-label">Engineers · 6</div>
+          <div class="dash-engineer-list">
+            <span class="eng-pill">Z. Chuluun-Ulzii</span>
+            <span class="eng-pill">M. Gankhuu</span>
+            <span class="eng-pill">S. Samdanjigmed</span>
+            <span class="eng-pill warn">Ch. Sumyaadorj</span>
+            <span class="eng-pill">B. Munkh-Tamir</span>
+            <span class="eng-pill warn">G. Tuguldur</span>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Progress</span><strong>85%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 85%;"></div></div>
+        </div>
+        <div class="dash-row" style="margin-top: 6px;">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Total revenue</div>
+            <div class="dash-row-value">508 M ₮</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: MedOn -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">MedOn</div>
+          <span class="dash-tag-pill external">External · B2C</span>
+        </div>
+        <div class="dash-card-meta">TBNura customer app — New</div>
+        <div class="dash-card-desc">Aggregate lifelong health data and deliver AI-based early detection and preventive care.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Unified user health data</li>
+          <li>AI early disease detection & risk screening</li>
+          <li>Integration with hospitals & doctors</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">E. Altanbagana</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">2025.11 → 2026.04</div>
+          </div>
+        </div>
+        <div class="dash-engineers">
+          <div class="dash-row-label">Engineers · 4</div>
+          <div class="dash-engineer-list">
+            <span class="eng-pill">B. Jamba</span>
+            <span class="eng-pill">T. Enkhbold</span>
+            <span class="eng-pill busy">B. Nyambayar</span>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Progress</span><strong>78%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar red" style="width: 78%;"></div></div>
+        </div>
+        <div class="dash-row" style="margin-top: 6px;">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Total revenue</div>
+            <div class="dash-row-value">Sales revenue</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: TechOn -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">TechOn</div>
+          <span class="dash-tag-pill internal">Internal · B2B</span>
+        </div>
+        <div class="dash-card-meta">TechOn portal · ticket flow</div>
+        <div class="dash-card-desc">Launch a B2B platform that 100% automates IT tickets, contracts and billing for the corporate market.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Automate IT tickets, contracts & billing</li>
+          <li>Unified B2B service platform</li>
+          <li>SaaS subscription model</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">E. Ariuntsas</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">2025.11 → 2026.05</div>
+          </div>
+        </div>
+        <div class="dash-engineers">
+          <div class="dash-row-label">Engineers · 4</div>
+          <div class="dash-engineer-list">
+            <span class="eng-pill warn">E. Batzorig</span>
+            <span class="eng-pill">E. Sandagdorj</span>
+            <span class="eng-pill">M. Misheel</span>
+            <span class="eng-pill">E. Munkhjin</span>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Progress</span><strong>65%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 65%;"></div></div>
+        </div>
+        <div class="dash-row" style="margin-top: 6px;">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Total revenue</div>
+            <div class="dash-row-value">Sales revenue</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Nura B2B -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">Nura B2B</div>
+          <span class="dash-tag-pill external">External · B2B</span>
+        </div>
+        <div class="dash-card-meta">Nura B2B platform</div>
+        <div class="dash-card-desc">Build a marketplace delivering fast, reliable KYB verification and vendor management for SMEs.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>SME KYB verification</li>
+          <li>Vendor management & registration</li>
+          <li>Integration into API ecosystem</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">TBD · T. Molorchimeg</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">2025.05 → 2026.06</div>
+          </div>
+        </div>
+        <div class="dash-engineers">
+          <div class="dash-row-label">Engineers · Team formation in progress</div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Progress</span><strong>20%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 20%;"></div></div>
+        </div>
+        <div class="dash-row" style="margin-top: 6px;">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Total revenue</div>
+            <div class="dash-row-value">Sales revenue</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: LinkOn -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">LinkOn</div>
+          <span class="dash-tag-pill external">External · B2B</span>
+        </div>
+        <div class="dash-card-meta">B2B API integration marketplace</div>
+        <div class="dash-card-desc">Build a reusable middleware platform that centralizes external B2B integrations and standardizes connections.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Unified middleware for external B2B integrations</li>
+          <li>Connection standards & caching layer</li>
+          <li>Reduce time-to-market for new integrations</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">B. Ujinaran</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">2025.04 → 2026.06</div>
+          </div>
+        </div>
+        <div class="dash-engineers">
+          <div class="dash-row-label">Engineers · 6</div>
+          <div class="dash-engineer-list">
+            <span class="eng-pill warn">E. Batzorig</span>
+            <span class="eng-pill">O. Munkhtamir</span>
+            <span class="eng-pill warn">Ch. Sumyaadorj</span>
+            <span class="eng-pill">E. Erdenebaatar</span>
+            <span class="eng-pill warn">G. Tuguldur</span>
+            <span class="eng-pill">P. Chinbat</span>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Progress</span><strong>35%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 35%;"></div></div>
+        </div>
+        <div class="dash-row" style="margin-top: 6px;">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Total revenue</div>
+            <div class="dash-row-value">Sales revenue</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7: PayOn v3 -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">PayOn v3</div>
+          <span class="dash-tag-pill external">External · B2C</span>
+        </div>
+        <div class="dash-card-meta">PayOn app</div>
+        <div class="dash-card-desc">Take consumer & SME lending to a new level with a fast, simple fintech platform.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>AI lending decision workflow</li>
+          <li>Digital lending for consumers & SMEs</li>
+          <li>Q2 2026 demo, phased rollout</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">E. Khishigzaya</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">2026.05 → 2026.06</div>
+          </div>
+        </div>
+        <div class="dash-engineers">
+          <div class="dash-row-label">Engineers · Team formation pending</div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Progress</span><strong>8%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 8%;"></div></div>
+        </div>
+        <div class="dash-row" style="margin-top: 6px;">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Total revenue</div>
+            <div class="dash-row-value">Sales revenue</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8: HomeOn -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">HomeOn</div>
+          <span class="dash-tag-pill external">External · B2C</span>
+        </div>
+        <div class="dash-card-meta">Home services platform</div>
+        <div class="dash-card-desc">A single-point platform for home and living services — repair, cleaning, decoration.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Home services marketplace</li>
+          <li>Provider ↔ customer matching</li>
+          <li>Booking, payment & rating system</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">TBD</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">2026 Q2 → Q4</div>
+          </div>
+        </div>
+        <div class="dash-engineers">
+          <div class="dash-row-label">Engineers · Not started — in market research phase</div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Progress</span><strong>0%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 0%;"></div></div>
+        </div>
+        <div class="dash-row" style="margin-top: 6px;">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Total revenue</div>
+            <div class="dash-row-value">Sales revenue</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 9: Internal Asset Management -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">Internal Asset Mgmt</div>
+          <span class="dash-tag-pill internal">Internal · B2B</span>
+        </div>
+        <div class="dash-card-meta">Internal asset management</div>
+        <div class="dash-card-desc">A unified system automating registration, control and movement of internal organizational assets.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Unified asset registry</li>
+          <li>Movement, audit & control</li>
+          <li>Rapid 14-day delivery</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">E. Saikhanbayar</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">2026.05.01 → 05.15</div>
+          </div>
+        </div>
+        <div class="dash-engineers">
+          <div class="dash-row-label">Engineers · 3</div>
+          <div class="dash-engineer-list">
+            <span class="eng-pill">A. Amartuvshin</span>
+            <span class="eng-pill warn">S. Nyambayar</span>
+            <span class="eng-pill busy">B. Nyambayar</span>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Progress</span><strong>0%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 0%;"></div></div>
+        </div>
+        <div class="dash-row" style="margin-top: 6px;">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Total revenue</div>
+            <div class="dash-row-value">Of each sale 1%</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer: Composition + Timeline -->
+    <div class="dash-footer">
+      <div>
+        <div class="composition-title">Portfolio Composition · 8</div>
+        <div class="comp-grid">
+          <div class="comp-item"><span class="comp-dot internal"></span>Internal<span class="comp-count">3</span></div>
+          <div class="comp-item"><span class="comp-dot external"></span>External<span class="comp-count">5</span></div>
+          <div class="comp-item"><span class="comp-dot b2c"></span>B2C<span class="comp-count">4</span></div>
+          <div class="comp-item"><span class="comp-dot b2b"></span>B2B<span class="comp-count">3</span></div>
+          <div class="comp-item"><span class="comp-dot market"></span>Marketplace<span class="comp-count">1</span></div>
+          <div class="comp-item"><span class="comp-dot fintech"></span>Fintech & Health<span class="comp-count">2</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="timeline-title">Development Timeline · 2025 Q4 → 2026 Q4</div>
+        <div class="timeline-list">
+          Juulchin <span>12.15 — MVP Q1, Pilot Q2-Q4</span>
+          TBG Life <span>05.01 — Beta Q1</span>
+          MedOn <span>04.08 — Live</span>
+          TechOn <span>05.01 — KYB → MVP</span>
+          LinkOn <span>06.01</span>
+          PayOn v3 <span>06.02</span>
+          HomeOn <span>12.15 — Research</span>
+          Internal Asset <span>05.15</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-muted);">
+      <div>● Internal platform &nbsp;&nbsp; ● External platform &nbsp;&nbsp; ● TBD</div>
+      <div>Prepared by: A. Amartuvshin · Platform Team · v1.1</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: AUTOMATION TEAM EXECUTIVE REPORT -->
+  <section class="slide slide-dashboard">
+    <span class="slide-number" style="position: absolute; top: 20px; right: 30px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted);">08 / 10</span>
+
+    <div class="dash-header">
+      <div class="dash-header-left">
+        <div class="dash-tag">Automation Team · Executive Report</div>
+        <div class="dash-title">Automation initiatives, ownership & delivery map</div>
+        <div class="dash-subtitle">16 initiatives · 2026 Q1 — Q3 · Lifecycle, Platform & AI Agent automation</div>
+      </div>
+      <div class="dash-header-right">
+        <div class="dash-date-label">Report Date</div>
+        <div class="dash-date">2026.04.28</div>
+        <span class="conf-badge">CONFIDENTIAL</span>
+      </div>
+    </div>
+
+    <!-- Top stats -->
+    <div class="dash-stats">
+      <div class="dash-stat">
+        <div class="dash-stat-label">Total Initiatives</div>
+        <div class="dash-stat-value">16</div>
+        <div class="dash-stat-sub">3 done · 10 active · 2 planned · 1 deferred</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-label">Owners</div>
+        <div class="dash-stat-value">7</div>
+        <div class="dash-stat-sub">PMs across automation tracks</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-label">Active Tracks</div>
+        <div class="dash-stat-value accent">4</div>
+        <div class="dash-stat-sub">ToBe · Platform · Process · AI Agents</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-label">AI Agents in Build</div>
+        <div class="dash-stat-value gold">5</div>
+        <div class="dash-stat-sub">FindOn · LeadOn · VoiceOn · HelpOn · Demand</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-label">Next Milestone</div>
+        <div class="dash-stat-value">2026 May</div>
+        <div class="dash-stat-sub">ToBe baseline · 5 platform releases</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-label">Target</div>
+        <div class="dash-stat-value">2026 Q3</div>
+        <div class="dash-stat-sub">Full automation portfolio rollout</div>
+      </div>
+    </div>
+
+    <!-- Initiative cards 4x4 grid -->
+    <div class="dash-grid">
+
+      <!-- 1: Call Center Consolidation (Completed) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">Call Center Consolidation</div>
+          <span class="dash-tag-pill internal">Process · ERP</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Unify customer call center operations and integrate them directly into the ERP system.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Single unified call center</li>
+          <li>ERP integration for customer ops</li>
+          <li>Operational efficiency gains</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">Ch. Enkhtogtokh</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Mar 19 → Apr 17</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>Completed</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar green" style="width: 100%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 2: CashOn (Completed) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">CashOn</div>
+          <span class="dash-tag-pill internal">Internal · Reporting</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Aggregates bank statements from all Group subsidiaries and produces 4 consolidated reports via Power BI.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Multi-bank statement aggregation</li>
+          <li>4 consolidated report types</li>
+          <li>Power BI dashboards</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">N. Khongorzul</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Feb 2 → Apr 1</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>Completed</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar green" style="width: 100%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 3: InterOn (Completed) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">InterOn</div>
+          <span class="dash-tag-pill internal">Internal · Reconciliation</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Unified inter-company reconciliation system for income, expenses, payables and receivables across subsidiaries.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Inter-company reconciliation engine</li>
+          <li>Single source of truth across subsidiaries</li>
+          <li>Faster month-end close</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">N. Khongorzul</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Mar 1 → Apr 1</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>Completed</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar green" style="width: 100%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 4: Lifecycle ToBe (90%) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">Lifecycle ToBe</div>
+          <span class="dash-tag-pill internal">Process · Foundation</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Define core lifecycle ToBe processes: Policy, Risk, Product, Customer, Employee, Location, Vendor, Contract, Finance, Program, Data.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Stakeholder workshops & alignment</li>
+          <li>CEO-level approval of ToBe processes</li>
+          <li>Unified repository under Risk & Policy office</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">All 7 PMs</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Apr 7 → May 1</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>In progress · 90%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 90%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 5: FindOn (65%) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">FindOn</div>
+          <span class="dash-tag-pill external">AI Agent · Finance</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Finance NBFI</div>
+        <div class="dash-card-desc">AI agent that finds borrower data from open sources to support TBF loan repayment and collections.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Open-source borrower data discovery</li>
+          <li>Support collections workflow</li>
+          <li>Reduce default risk</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">B. Narkhajid</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Apr 13 → May 30</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>In progress · 65%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 65%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 6: Baaz Shop POS (60%) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">Baaz Shop POS</div>
+          <span class="dash-tag-pill internal">Process · Retail</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Roll out the Baaz Shop POS with full ERP integration, customer verification, and payment automation.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Odoo ERP v19 integration</li>
+          <li>KhUR/DAN-verified customer registry</li>
+          <li>Admin Nura, Pick & Pack integration</li>
+          <li>Automated payment confirmation</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">Ch. Enkhtogtokh</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Mar 9 → May 30</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>In progress · 60%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 60%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 7: HelpOn (55%) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">HelpOn</div>
+          <span class="dash-tag-pill internal">AI Agent · HR</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Internal chat assistant that answers employee questions from the knowledge base and handles simple actions like attendance requests and tickets.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Knowledge-base-driven Q&A</li>
+          <li>Attendance request & ticket creation</li>
+          <li>Reduce HR/IT support load</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">B. Narkhajid</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Mar 10 → May 14</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>In progress · 55%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 55%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 8: LeadOn (50%) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">LeadOn</div>
+          <span class="dash-tag-pill external">AI Agent · Sales</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Auto-capture and score leads in the Odoo ERP CRM module; route to sales reps. Score 90+ creates an opportunity. Targets +5% sales productivity.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Auto lead capture, scoring & routing</li>
+          <li>Meta forms & Facebook page chat integration</li>
+          <li>+5% sales productivity, full lead history</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">Ch. Enkhtogtokh</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Apr 7 → May 8</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>In progress · 50%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 50%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 9: VoiceOn (45%) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">VoiceOn</div>
+          <span class="dash-tag-pill external">AI Agent · Speech</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Speech-to-text engine converting customer call audio into text, used for call centers, meeting notes and official communications.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Voice → text transcription</li>
+          <li>Call center, meetings & official comms use cases</li>
+          <li>Searchable transcript archive</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">Ch. Enkhtogtokh</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Apr 17 → May 14</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>In progress · 45%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 45%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 10: ERP Gift Card Mgmt (40%) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">ERP Gift Card Mgmt</div>
+          <span class="dash-tag-pill internal">Process · ERP</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Digitize gift card management within the ERP Sales module — registry, logic and security controls.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Gift card registry & lifecycle logic</li>
+          <li>Security & validation controls</li>
+          <li>Sales module integration</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">Ch. Enkhtogtokh</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Apr 28 → May 15</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>In progress · 40%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 40%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 11: ERP VoC Reporting (30%) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">ERP VoC Reporting</div>
+          <span class="dash-tag-pill internal">Reporting · Real-time</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Real-time Voice of Customer reporting automation built on top of the ERP.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Real-time VoC reporting</li>
+          <li>ERP-native data pipeline</li>
+          <li>Automated executive dashboards</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">Ch. Enkhtogtokh</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Apr 28 → May 30</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>In progress · 30%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 30%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 12: AI-Powered ToBe (20%) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">AI-Powered ToBe</div>
+          <span class="dash-tag-pill internal">Process · AI Strategy</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Define AI-powered ToBe processes across all 11 lifecycle domains, identifying automation and AI use cases.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Stakeholder discovery & alignment</li>
+          <li>Map AI use cases per lifecycle domain</li>
+          <li>CEO-approved blueprint & central repository</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">All 7 PMs</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Apr 7 → Jun 1</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>In progress · 20%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 20%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 13: Fleet Management + TMS (20%) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">Fleet Mgmt + TMS</div>
+          <span class="dash-tag-pill internal">Platform · B2B</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Vehicle and driver tracking system for TBN, expanding to Group-wide fleet & transport management.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Real-time vehicle & driver monitoring</li>
+          <li>TBN rollout, then Group-wide expansion</li>
+          <li>Integration with ERP transport ops</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">B. Narkhajid</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Apr 24 → Sep 1</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Phase 1 / 2</span><strong>In progress · 20%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 20%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 14: Input Marketplace (10%) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">Input Marketplace</div>
+          <span class="dash-tag-pill external">Platform · B2B</span>
+        </div>
+        <div class="dash-card-meta">TBG Solutions · TBG Holdings</div>
+        <div class="dash-card-desc">Digitize tender & procurement, build B2B input marketplace, and embed TBF lending, factoring & embedded finance.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Digital tender & procurement workflow</li>
+          <li>B2B input marketplace launch</li>
+          <li>Embedded finance: lending & factoring</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">T. Molorchimeg</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Apr 17 → Sep 1</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Phase 1 / 2</span><strong>In progress · 10%</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 10%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 15: ATM Monitoring Automation (Planned) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">ATM Monitoring Automation</div>
+          <span class="dash-tag-pill internal">Internal · Operations</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Automate the ATM monitoring engineering workflow to reduce manual ops effort.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Automated ATM health monitoring</li>
+          <li>Alert routing & incident creation</li>
+          <li>Reduced manual engineering effort</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">S. Batsukh</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Apr 24 → May 30</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>Planned</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar" style="width: 5%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 16: Demand Forecasting (Deferred) -->
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div class="dash-card-name">Demand Forecasting</div>
+          <span class="dash-tag-pill external">AI Agent · Supply Chain</span>
+        </div>
+        <div class="dash-card-meta">Tavan Bogd Solutions LLC</div>
+        <div class="dash-card-desc">Automate procurement and inventory replenishment calculations using AI-driven forecasting. Will be part of the Input Marketplace platform.</div>
+        <div class="dash-section-label">Objectives</div>
+        <ul class="dash-objectives">
+          <li>Automated demand prediction</li>
+          <li>Smarter procurement decisions</li>
+          <li>Lower inventory holding cost</li>
+        </ul>
+        <div class="dash-row">
+          <div class="dash-row-item">
+            <div class="dash-row-label">Owner</div>
+            <div class="dash-row-value">T. Molorchimeg</div>
+          </div>
+          <div class="dash-row-item">
+            <div class="dash-row-label">Timeline</div>
+            <div class="dash-row-value">Apr 17 → Sep 1</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dash-progress-row"><span>Status</span><strong>Deferred</strong></div>
+          <div class="dash-progress-track"><div class="dash-progress-bar red" style="width: 10%;"></div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer: Composition + Timeline -->
+    <div class="dash-footer">
+      <div>
+        <div class="composition-title">Initiative Composition · 16</div>
+        <div class="comp-grid">
+          <div class="comp-item"><span class="comp-dot internal"></span>ToBe / Process<span class="comp-count">2</span></div>
+          <div class="comp-item"><span class="comp-dot external"></span>Platform<span class="comp-count">2</span></div>
+          <div class="comp-item"><span class="comp-dot b2c"></span>Process digitization<span class="comp-count">3</span></div>
+          <div class="comp-item"><span class="comp-dot b2b"></span>AI Agents<span class="comp-count">5</span></div>
+          <div class="comp-item"><span class="comp-dot market"></span>Internal automation<span class="comp-count">3</span></div>
+          <div class="comp-item"><span class="comp-dot fintech"></span>Reporting<span class="comp-count">1</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="timeline-title">Delivery Timeline · 2026 Q1 → Q3</div>
+        <div class="timeline-list">
+          ToBe baseline <span>05.01 — Approved</span>
+          AI ToBe <span>06.01 — Mapping</span>
+          Input Marketplace <span>06.01 / 09.01</span>
+          Fleet + TMS <span>06.01 / 09.01</span>
+          Call Center <span>04.17 — Done</span>
+          Baaz POS <span>05.30</span>
+          CashOn / InterOn <span>04.01 — Done</span>
+          AI Agents (5) <span>05.08 → 05.14</span>
+          VoC Reporting <span>05.30</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-muted);">
+      <div>● Process &nbsp;&nbsp; ● Platform &nbsp;&nbsp; ● AI Agent</div>
+      <div>Prepared by: U. Tsend-Ayush · Automation Team · v1.0</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: ERP ROLLOUT -->
+  <section class="slide">
+    <span class="slide-number">09 / 10</span>
+    <div class="slide-tag">Group-Wide Rollout</div>
+    <h2>Odoo ERP v19 Deployment Plan</h2>
+    <p style="margin-bottom: 8px; color: var(--text);">18 subsidiary rollouts scheduled through 2026. Standard modules unless otherwise noted.</p>
+
+    <table class="erp-table">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Scope</th>
+          <th>Status</th>
+          <th>Timeline</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Tavan Bogd Solutions LLC</td><td>All standard modules</td><td><span class="badge live">Completed</span></td><td>Q1 2026</td></tr>
+        <tr><td>Tavan Bogd Nura LLC</td><td>All standard modules</td><td><span class="badge dev">In Progress</span></td><td>Apr 2026</td></tr>
+        <tr><td>Tavan Bogd Finance NBFI</td><td>All standard modules</td><td><span class="badge dev">In Progress</span></td><td>Apr 2026</td></tr>
+        <tr><td>Tavan Bogd Holdings LLC</td><td>All standard modules</td><td><span class="badge dev">In Progress</span></td><td>Apr 2026</td></tr>
+        <tr><td>Gobi JSC</td><td>HR module</td><td><span class="badge dev">In Progress</span></td><td>May 2026</td></tr>
+        <tr><td>Tavan Bogd International</td><td>HR module</td><td><span class="badge dev">In Progress</span></td><td>May 2026</td></tr>
+        <tr><td>Tavan Bogd Foods (Pizza)</td><td>All standard modules</td><td><span class="badge dev">In Progress</span></td><td>May–Jun 2026</td></tr>
+        <tr><td>Tavan Bogd Foods LLC</td><td>All standard modules</td><td><span class="badge dev">In Progress</span></td><td>May–Jun 2026</td></tr>
+        <tr><td>Q3 cohort (7 companies)</td><td>All standard modules</td><td><span class="badge plan">Planned</span></td><td>Jul–Sep 2026</td></tr>
+        <tr><td>Khaan Palace LLC<br><span style="font-size: 11px; color: var(--text-muted); font-style: italic;">⚠ Kempinski franchise ending — all hotel systems to be replaced</span></td><td>All standard modules + replacement hotel systems study & rollout</td><td><span class="badge plan">Planned</span></td><td>By Dec 2026</td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top: 24px; padding: 16px 20px; background: #f9fbfd; border-radius: 8px; font-size: 13px; color: var(--text-muted);">
+      <strong style="color: var(--navy-900);">Q3 cohort includes:</strong> Tavan Bogd Trade · Tavanbogd Construction Machinery · UBP · Ulaanbaatar Flour · Tavan Bogd LLC · Juulchin Duty Free · Airlink Mongolia · Tavan Bogd Capital
+    </div>
+
+    <div style="margin-top: 14px; padding: 16px 20px; background: #fff5f0; border-radius: 8px; border-left: 3px solid #d44a3a; font-size: 13px;">
+      <strong style="color: #d44a3a; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;">▸ Special Case · Khaan Palace LLC</strong>
+      <p style="color: var(--text); margin-top: 8px; line-height: 1.5;">
+        The Kempinski franchise agreement is being terminated, which means all current hotel management systems (PMS, POS, channel manager, and related platforms) will be discontinued. By <strong>December 2026</strong>, replacement systems must be researched, selected, and successfully deployed alongside the standard ERP rollout — making this the most complex implementation in the program.
+      </p>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: 2026 ROADMAP -->
+  <section class="slide">
+    <span class="slide-number">10 / 10</span>
+    <div class="slide-tag">Looking Ahead</div>
+    <h2>2026 Roadmap</h2>
+
+    <div class="roadmap">
+      <div class="quarter">
+        <div class="quarter-label">Q1 / Done</div>
+        <h4>Foundation</h4>
+        <ul>
+          <li>Solutions LLC: full ERP rollout completed</li>
+          <li>Internal Audit System (DAG) launched</li>
+          <li>Juulchin.com Phase 1 delivered</li>
+          <li>MedOn delivery (Apr · 78%)</li>
+        </ul>
+      </div>
+
+      <div class="quarter">
+        <div class="quarter-label">Q2 / Active</div>
+        <h4>Acceleration</h4>
+        <ul>
+          <li>ERP rollout to 7 subsidiaries</li>
+          <li>TBG Life MVP go-live (May · 85%)</li>
+          <li>TechOn launch (May · 65%)</li>
+          <li>LinkOn release (Jun · 35%)</li>
+          <li>Nura B2B release (Jun · 20%)</li>
+          <li>PayOn v3 demo (May–Jun · 8%)</li>
+          <li>Internal Asset Mgmt rollout (May)</li>
+          <li>SpotOn TagGuard (RFID) rollout</li>
+        </ul>
+      </div>
+
+      <div class="quarter">
+        <div class="quarter-label">Q3 / Planned</div>
+        <h4>Scale</h4>
+        <ul>
+          <li>Q3 ERP cohort: 7 subsidiaries</li>
+          <li>Shopify Plus rollouts</li>
+          <li>Juulchin Phase 2 (pilot expansion)</li>
+          <li>HomeOn — exit research, MVP build</li>
+          <li>AI-Powered ToBe activated</li>
+        </ul>
+      </div>
+
+      <div class="quarter">
+        <div class="quarter-label">Q4 / Planned</div>
+        <h4>Expansion</h4>
+        <ul>
+          <li>Khaan Palace ERP go-live</li>
+          <li>Juulchin Phase 3 (full rollout)</li>
+          <li>HomeOn platform launch</li>
+          <li>PayOn v3 phased rollout</li>
+          <li>Full portfolio target reached</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL SLIDE -->
+  <section class="slide slide-final">
+    <div class="final-content">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 0.3em; margin-bottom: 32px;">
+        ── THANK YOU
+      </div>
+      <h1>Looking forward to<br><strong>building together.</strong></h1>
+      <p>Welcome to Tavan Bogd Group. The team is ready to walk you through any platform, team, or roadmap item in deeper detail.</p>
+
+      <div class="signature">
+        DIGITAL BUSINESS DEPARTMENT · TAVAN BOGD SOLUTIONS · 2026
+      </div>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
